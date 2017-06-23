@@ -1,0 +1,236 @@
+#set($var_LeftBrackets="(")
+#set($var_CREATE_AUTHOR="CREATE_AUTHOR")
+#set($var_CREATE_DATETIME="CREATE_DATETIME")
+#set($var_UPDATE_AUTHOR="UPDATE_AUTHOR")
+#set($var_UPDATE_DATETIME="UPDATE_DATETIME")
+#set($var_createAuthor="createAuthor")
+#set($var_createDatetime="createDatetime")
+#set($var_updateAuthor="updateAuthor")
+#set($var_updateDatetime="updateDatetime")
+#set($var_CreateAuthorAccessor="CreateAuthor")
+#set($var_CreateDatetimeAccessor="CreateDatetime")
+#set($var_UpdateAuthorAccessor="UpdateAuthor")
+#set($var_UpdateDatetimeAccessor="UpdateDatetime")
+
+package $dto.classPackage;
+
+import java.io.Serializable;
+#foreach ( $classImport in $dto.classImportList )
+$classImport
+#end
+import com.dora.bean.BeanUtil;
+import com.dora.service.TableObject;
+
+/**
+ * Pojo mcom.umeing to table "$dto.className"
+ *
+ * @author DORA.Generator
+ */
+#foreach ( $classAnnotation in $dto.classAnnotationList )
+$classAnnotation
+#end
+public class $dto.classId extends TableObject implements Serializable, Comparable<$dto.classId> {
+   /**
+    * Default serial version code
+    */
+    private static final long serialVersionUID = 1L;
+
+#foreach ( $field in $dto.fieldList )
+   /**
+    * $field.fieldName 
+#if ($field.colComment != "" && $field.colComment != "null")
+    * $field.colComment
+#end   
+    */
+#foreach ( $fieldAnnotation in $field.fieldAnnotationList )
+    $fieldAnnotation
+#end
+    private $field.fieldType $field.fieldId;
+
+#end
+   /**
+    * Create Author (default setting while insert)
+    */
+    @Size(min=32, max=32)
+    @ColumnDesc(index=($dto.fieldList.size() + 1), type="VARCHAR", label="Create Auther")
+    @Column(name="CREATE_AUTHER", nullable=true, length=32)
+    private String ${var_createAuthor};
+   /**
+    * Create Datetime (default setting while insert)
+    */
+    @ColumnDesc(index=($dto.fieldList.size() + 2), type="TIMESTAMP", label="Create Datetime")
+    @Column(name="CREATE_DATETIME", nullable=true)
+    private java.sql.Timestamp ${var_createDatetime};
+   /**
+    * Update Author (refresh on each update)
+    */
+    @Size(min=32, max=32)
+    @ColumnDesc(index=($dto.fieldList.size() + 3), type="VARCHAR", label="Update Auther")
+    @Column(name="UPDATE_AUTHER", nullable=true, length=32)
+    private String ${var_updateAuthor};
+   /**
+    * Update Datetime (refresh on each update)
+    */
+    @ColumnDesc(index=($dto.fieldList.size() + 4), type="TIMESTAMP", label="Update Datetime")
+    @Column(name="UPDATE_DATETIME", nullable=true)
+    private java.sql.Timestamp ${var_updateDatetime};
+
+#foreach ( $field in $dto.fieldList )
+    /**
+     *　Get the "$field.fieldName"
+     */
+    public $field.fieldType get$field.fieldIdCap${var_LeftBrackets}) {
+        return this.$field.fieldId;
+    }
+    /**
+     *　Set the "$field.fieldName"
+     */
+    public void set$field.fieldIdCap${var_LeftBrackets}
+            $field.fieldType $field.fieldId) {
+        this.$field.fieldId = $field.fieldId;
+    }
+
+#end
+    /**
+     * Get the "Create Auther"
+     */
+    public String get${var_CreateAuthorAccessor}() {
+        return ${var_createAuthor};
+    }
+    /**
+     * Set the "Create Auther"
+     */
+    public void set${var_CreateAuthorAccessor}(
+            String ${var_createAuthor}) {
+        this.${var_createAuthor} = ${var_createAuthor};
+    }
+
+    /**
+     * Get the "Create Datetime"
+     */
+    public java.sql.Timestamp get${var_CreateDatetimeAccessor}() {
+        return ${var_createDatetime};
+    }
+    /**
+     * Set the "Create Datetime"
+     */
+    public void set${var_CreateDatetimeAccessor}(
+            java.sql.Timestamp ${var_createDatetime}) {
+        this.${var_createDatetime} = ${var_createDatetime};
+    }
+
+    /**
+     * Get the "Update Auther"
+     */
+    public String get${var_UpdateAuthorAccessor}() {
+        return ${var_updateAuthor};
+    }
+    /**
+     * Set the "Update Auther"
+     */
+    public void set${var_UpdateAuthorAccessor}(
+            String ${var_updateAuthor}) {
+        this.${var_updateAuthor} = ${var_updateAuthor};
+    }
+
+    /**
+     * Get the "Update Datetime"
+     */
+    public java.sql.Timestamp get${var_UpdateDatetimeAccessor}() {
+        return ${var_updateDatetime};
+    }
+    /**
+     * Set the "Update Datetime"
+     */
+    public void set${var_UpdateDatetimeAccessor}(
+            java.sql.Timestamp ${var_updateDatetime}) {
+        this.${var_updateDatetime} = ${var_updateDatetime};
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Comparable compareTo(Object})
+     */
+    @Override
+    public int compareTo(
+            $dto.classId targetObj) {
+        // default 0 no support sort
+        return 0;
+    }
+
+    /**
+     * Create bean instance copy with selected properties
+     * 
+     * @param selectProperties
+     *            - properties which copy to new instance
+     * @return
+     */
+    public ${dto.classId} copyFrom(
+            Property... selectProperties) {
+        if (selectProperties == null) {
+            return null;
+        }
+        ${dto.classId} newInstance = new ${dto.classId}();
+        for (Property property : selectProperties) {
+            String name = property.toString();
+            Object value = BeanUtil.getBeanProperty(this, name);
+            BeanUtil.setBeanProperty(newInstance, name, value);
+        }
+        return newInstance;
+    }
+    
+    /**
+     * Enumerate all SQL ID define in SQL-MAP
+     */
+    public static class SQLID {
+        public static final String INSERT = "TBL.${dto.tblId}_INSERT"; 
+        public static final String UPDATE = "TBL.${dto.tblId}_UPDATE"; 
+        public static final String SMART_UPDATE = "TBL.${dto.tblId}_SMART_UPDATE"; 
+        public static final String DELETE = "TBL.${dto.tblId}_DELETE"; 
+        public static final String FIND = "TBL.${dto.tblId}_FIND"; 
+        public static final String FIND_FOR_UPDATE = "TBL.${dto.tblId}_FIND_FOR_UPDATE"; 
+        public static final String SEARCH = "TBL.${dto.tblId}_SEARCH"; 
+        public static final String LIKE_SEARCH = "TBL.${dto.tblId}_LIKE_SEARCH"; 
+        public static final String DYNA_SEARCH = "TBL.${dto.tblId}_DYNA_SEARCH"; 
+        public static final String COUNT = "TBL.${dto.tblId}_COUNT";
+    } 
+
+    /**
+     * Enumerate all bean properties
+     */
+    public static class Property {
+#foreach ( ${field} in ${dto.fieldList} )
+        public static final String ${field.fieldId} = "${field.fieldId}";
+#end
+        public static final String createAuthor = "createAuthor";
+        public static final String createDatetime = "createDatetime";
+        public static final String updateAuthor = "updateAuthor";
+        public static final String updateDatetime = "updateDatetime";
+        public static final String theSchema = "theSchema";
+        public static final String theDivision = "theDivision";
+        public static final String theOrderByCondition = "theOrderByCondition";
+        public static final String theGroupByCondition = "theGroupByCondition";
+        public static final String theSQLCondition = "theSQLCondition";
+        public static final String theFetchSize = "theFetchSize";
+        public static final String theFetchStart = "theFetchStart";   
+    }
+    
+    /**
+     * Enumerate all table column names which map to bean properties
+     */
+    public static class ColumnName {
+#foreach ( ${field} in ${dto.fieldList} )
+        public static final String ${field.colId} = "${field.colId}";
+#end
+        public static final String ${var_CREATE_AUTHOR} = "${var_CREATE_AUTHOR}";
+        public static final String ${var_CREATE_DATETIME} = "${var_CREATE_DATETIME}";
+        public static final String ${var_UPDATE_AUTHOR} = "${var_UPDATE_AUTHOR}";
+        public static final String ${var_UPDATE_DATETIME} = "${var_UPDATE_DATETIME}";
+    }
+    /**
+     * Enumerate table name
+     */
+    public static class TableName {
+        public static final String ${dto.tblId} = "${dto.tblId}";
+    }
+
+}

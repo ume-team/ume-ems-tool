@@ -1,0 +1,15 @@
+#set($comment = "# Service mcom.umeing define for entity restful Crud management")
+#set($sharp = "#")
+${comment}
+
+#foreach(${dto} in ${dtos})
+${sharp} ${dto.tableCrudServiceInterface}
+Create${dto.tableCrudServiceInterface}=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#create
+Retrieve${dto.tableCrudServiceInterface}=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#retrieve
+Find${dto.tableCrudServiceInterface}=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#find
+Count${dto.tableCrudServiceInterface}=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#count
+Update${dto.tableCrudServiceInterface}=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#update
+Delete${dto.tableCrudServiceInterface}=${dto.tableCrudServicePackage}.${dto.tableCrudServiceClass}#delete
+
+#end
+
