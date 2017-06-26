@@ -8,7 +8,7 @@
 		</repository>
 	</repositories>
 
-	<groupId>ume</groupId>
+	<groupId>ume.ems</groupId>
 	<artifactId>ume-ems-tool</artifactId>
 	<version>1.0.1-RELEASE</version>
 	<packaging>jar</packaging>
