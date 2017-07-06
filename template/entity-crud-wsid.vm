@@ -1,4 +1,4 @@
-#set($comment = "# Service mcom.umeing define for entity restful Crud management")
+#set($comment = "# Service mapping define for entity restful Crud management")
 #set($sharp = "#")
 ${comment}
 

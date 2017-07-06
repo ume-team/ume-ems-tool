@@ -1,4 +1,4 @@
-package com.ume;
+package com.ume.app;
 
 import com.dora.tool.gen.sql.Excel2SqlGenerator;
 

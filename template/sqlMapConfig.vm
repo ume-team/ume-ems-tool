@@ -26,20 +26,20 @@
 		</environment>
 	</environments>
 
-	<mcom.umeers>
+	<mappers>
 		<!-- 共通 -->
-		<mcom.umeer resource="sql/cmt/comm.DBConnectionCheck.xml" />
+		<mapper resource="sql/cmt/comm.DBConnectionCheck.xml" />
 		<!-- 自定義 -->
-		<mcom.umeer resource="sql/cmt/custom.xml" />
-		<mcom.umeer resource="sql/cmt/prototype.xml" />
+		<mapper resource="sql/cmt/custom.xml" />
+		<mapper resource="sql/cmt/prototype.xml" />
 		<!-- 自動生成-->
 #foreach ( $dto in $dtos )
 #if($dto.classPackage == "com.ibm.jp.cis.main.db.tbl")
-		<mcom.umeer resource="sql/tbl/${dto.tblId}.xml" />
+		<mapper resource="sql/tbl/${dto.tblId}.xml" />
 #elseif($dto.classPackage == "com.ibm.jp.cis.main.db.view")
-		<mcom.umeer resource="sql/view/${dto.tblId}.xml" />
+		<mapper resource="sql/view/${dto.tblId}.xml" />
 #end
 #end
 
-	</mcom.umeers>
+	</mappers>
 </configuration>

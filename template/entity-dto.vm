@@ -22,7 +22,7 @@ import com.dora.bean.BeanUtil;
 import com.dora.service.TableObject;
 
 /**
- * Pojo mcom.umeing to table "$dto.className"
+ * Pojo mapping to table "$dto.className"
  *
  * @author DORA.Generator
  */
@@ -182,16 +182,16 @@ public class $dto.classId extends TableObject implements Serializable, Comparabl
      * Enumerate all SQL ID define in SQL-MAP
      */
     public static class SQLID {
-        public static final String INSERT = "TBL.${dto.tblId}_INSERT"; 
-        public static final String UPDATE = "TBL.${dto.tblId}_UPDATE"; 
-        public static final String SMART_UPDATE = "TBL.${dto.tblId}_SMART_UPDATE"; 
-        public static final String DELETE = "TBL.${dto.tblId}_DELETE"; 
-        public static final String FIND = "TBL.${dto.tblId}_FIND"; 
-        public static final String FIND_FOR_UPDATE = "TBL.${dto.tblId}_FIND_FOR_UPDATE"; 
-        public static final String SEARCH = "TBL.${dto.tblId}_SEARCH"; 
-        public static final String LIKE_SEARCH = "TBL.${dto.tblId}_LIKE_SEARCH"; 
-        public static final String DYNA_SEARCH = "TBL.${dto.tblId}_DYNA_SEARCH"; 
-        public static final String COUNT = "TBL.${dto.tblId}_COUNT";
+        public static final String INSERT = "${dto.classPackage}.${dto.tblId}_INSERT"; 
+        public static final String UPDATE = "${dto.classPackage}.${dto.tblId}_UPDATE"; 
+        public static final String SMART_UPDATE = "${dto.classPackage}.${dto.tblId}_SMART_UPDATE"; 
+        public static final String DELETE = "${dto.classPackage}.${dto.tblId}_DELETE"; 
+        public static final String FIND = "${dto.classPackage}.${dto.tblId}_FIND"; 
+        public static final String FIND_FOR_UPDATE = "${dto.classPackage}.${dto.tblId}_FIND_FOR_UPDATE"; 
+        public static final String SEARCH = "${dto.classPackage}.${dto.tblId}_SEARCH"; 
+        public static final String LIKE_SEARCH = "${dto.classPackage}.${dto.tblId}_LIKE_SEARCH"; 
+        public static final String DYNA_SEARCH = "${dto.classPackage}.${dto.tblId}_DYNA_SEARCH"; 
+        public static final String COUNT = "${dto.classPackage}.${dto.tblId}_COUNT";
     } 
 
     /**

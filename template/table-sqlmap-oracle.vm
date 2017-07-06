@@ -12,9 +12,9 @@
 #set($var_leftBraces="{")
 #set($var_rightBraces="}")
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mcom.umeer PUBLIC "-//mybatis.org//DTD Mcom.umeer 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mcom.umeer.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mcom.umeer namespace="TBL">
+<mapper namespace="TBL">
   <!-- ${dto.tblName} [${dto.tblId}] -->
 
   <!-- Insert SQL Declare -->
@@ -225,5 +225,5 @@
       <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
   </select>
 
-</mcom.umeer>
+</mapper>
 
