@@ -8,9 +8,7 @@
 		</repository>
 	</repositories>
 
-    <groupId>org.umeframework.service</groupId>
 	<artifactId>ume-ems-tool</artifactId>
-	<version>0.0.1.SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<parent>
         <groupId>org.umeframework</groupId>

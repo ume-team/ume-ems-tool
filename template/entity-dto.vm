@@ -18,18 +18,18 @@ import java.io.Serializable;
 #foreach ( $classImport in $dto.classImportList )
 $classImport
 #end
-import com.dora.bean.BeanUtil;
-import com.dora.service.TableObject;
+import org.umeframework.dora.bean.BeanUtil;
+import org.umeframework.dora.service.TableEntity;
 
 /**
- * Pojo mapping to table "$dto.className"
+ * Entity class map to table "$dto.className"
  *
- * @author DORA.Generator
+ * @author ume-team
  */
 #foreach ( $classAnnotation in $dto.classAnnotationList )
 $classAnnotation
 #end
-public class $dto.classId extends TableObject implements Serializable, Comparable<$dto.classId> {
+public class $dto.classId extends TableEntity implements Serializable, Comparable<$dto.classId> {
    /**
     * Default serial version code
     */
@@ -179,7 +179,7 @@ public class $dto.classId extends TableObject implements Serializable, Comparabl
     }
     
     /**
-     * Enumerate all SQL ID define in SQL-MAP
+     * Constant declare: SQL ID in config file
      */
     public static class SQLID {
         public static final String INSERT = "${dto.classPackage}.${dto.tblId}_INSERT"; 
@@ -195,27 +195,20 @@ public class $dto.classId extends TableObject implements Serializable, Comparabl
     } 
 
     /**
-     * Enumerate all bean properties
+     * Constant declare: entity property name.<br>
      */
     public static class Property {
 #foreach ( ${field} in ${dto.fieldList} )
         public static final String ${field.fieldId} = "${field.fieldId}";
 #end
-        public static final String createAuthor = "createAuthor";
-        public static final String createDatetime = "createDatetime";
-        public static final String updateAuthor = "updateAuthor";
-        public static final String updateDatetime = "updateDatetime";
-        public static final String theSchema = "theSchema";
-        public static final String theDivision = "theDivision";
-        public static final String theOrderByCondition = "theOrderByCondition";
-        public static final String theGroupByCondition = "theGroupByCondition";
-        public static final String theSQLCondition = "theSQLCondition";
-        public static final String theFetchSize = "theFetchSize";
-        public static final String theFetchStart = "theFetchStart";   
+        public static final String ${var_createAuthor} = "${var_createAuthor}";
+        public static final String ${var_createDatetime} = "${var_createDatetime}";
+        public static final String ${var_updateAuthor} = "${var_updateAuthor}";
+        public static final String ${var_updateDatetime} = "${var_updateDatetime}";
     }
     
     /**
-     * Enumerate all table column names which map to bean properties
+     * Constant declare: column name map with bean property.<br>
      */
     public static class ColumnName {
 #foreach ( ${field} in ${dto.fieldList} )
@@ -227,10 +220,8 @@ public class $dto.classId extends TableObject implements Serializable, Comparabl
         public static final String ${var_UPDATE_DATETIME} = "${var_UPDATE_DATETIME}";
     }
     /**
-     * Enumerate table name
+     * Constant declare: table name.<br>
      */
-    public static class TableName {
-        public static final String ${dto.tblId} = "${dto.tblId}";
-    }
+    public static String TableName = "${dto.tblId}";
 
 }

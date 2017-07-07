@@ -3,9 +3,9 @@ package ${dto.tableCrudServicePackage};
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import com.dora.bean.BeanValidator;
-import com.dora.transaction.TransactionRequired;
-import com.dora.service.BaseDBComponent;
+import org.umeframework.dora.bean.BeanValidator;
+import org.umeframework.dora.transaction.TransactionRequired;
+import org.umeframework.dora.service.BaseDBComponent;
 import ${dto.classPackage}.${dto.classId};
 import ${dto.tableCrudServiceInterfacePackage}.${dto.tableCrudServiceInterface};
 
