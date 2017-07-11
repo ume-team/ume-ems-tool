@@ -29,7 +29,7 @@ import org.umeframework.dora.service.TableEntity;
 #foreach ( $classAnnotation in $dto.classAnnotationList )
 $classAnnotation
 #end
-public class $dto.classId extends TableEntity implements Serializable, Comparable<$dto.classId> {
+public class $dto.classId extends TableEntity implements Serializable {
    /**
     * Default serial version code
     */
@@ -145,16 +145,6 @@ public class $dto.classId extends TableEntity implements Serializable, Comparabl
     public void set${var_UpdateDatetimeAccessor}(
             java.sql.Timestamp ${var_updateDatetime}) {
         this.${var_updateDatetime} = ${var_updateDatetime};
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Comparable compareTo(Object})
-     */
-    @Override
-    public int compareTo(
-            $dto.classId targetObj) {
-        // default 0 no support sort
-        return 0;
     }
 
     /**
