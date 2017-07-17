@@ -10,7 +10,7 @@ import ${pkg} ;
  *
  * @author DORA.Generator
  */
-public class ${dtoBean.id} implements java.io.Serializable, Comparable<${dtoBean.id}> {
+public class ${dtoBean.id} implements java.io.Serializable {
    /**
     * Default serial version code
     */
@@ -39,13 +39,4 @@ public class ${dtoBean.id} implements java.io.Serializable, Comparable<${dtoBean
     }
 
 #end
-    /* (non-Javadoc)
-     * @see java.lang.Comparable
-     */
-    @Override
-    public int compareTo(
-            ${dtoBean.id} compareToDTO) {
-        // default 0 no support sort
-        return 0;
-    }
 }
