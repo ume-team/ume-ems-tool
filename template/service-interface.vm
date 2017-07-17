@@ -24,7 +24,7 @@ public interface $docBean.cmpBean.id {
      * @param $itemBean.id - $itemBean.name
 #end
 #if($funcBean.outParamList.size() > 0)
-     * @return $funcBean.outParam.comment ($funcBean.outParam.javaType)
+     * @return ($funcBean.outParam.javaType) $funcBean.outParam.name $funcBean.outParam.comment
 #end
      */
 #if($funcBean.outParamList.size() == 0)
