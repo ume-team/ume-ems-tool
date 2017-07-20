@@ -10,10 +10,6 @@
 
 #foreach(${dto} in ${dtos})
 #set($var_hasAutoIncrement="0")
-/* ${dto.tblId} : ${dto.tblName} */
-#if (${dto.autoIncrementColumnList.size()} > 0)
-/* ALTER TABLE `${dto.tblId}` DROP PRIMARY KEY ; */
-#end
 DROP TABLE IF EXISTS `${dto.tblId}` ;
 CREATE TABLE `${dto.tblId}` (
 #foreach(${field} in ${dto.fieldList})
