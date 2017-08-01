@@ -10,10 +10,7 @@
 
 #foreach(${dto} in ${dtos})
 #set($var_hasAutoIncrement="0")
-/* ${dto.tblId} : ${dto.tblName} */
-#if (${dto.autoIncrementColumnList.size()} > 0)
-/* ALTER TABLE `${dto.tblId}` DROP PRIMARY KEY ; */
-#end
+
 DROP TABLE IF EXISTS `${dto.tblId}` ;
 CREATE TABLE `${dto.tblId}` (
 #foreach(${field} in ${dto.fieldList})
@@ -25,14 +22,14 @@ CREATE TABLE `${dto.tblId}` (
 #elseif (${field.colDataType} == 'TIMESTAMP')
 	`${field.colId}` ${field.colDataTypeWithLength} ${field.colNotNull}	NULL DEFAULT NULL,
 #elseif (${field.colDataType} == 'VARCHAR' || ${field.colDataType} == 'CHAR')
-    `${field.colId}` ${field.colDataTypeWithLength} BINARY ${field.colNotNull}	${field.colDefaultValue},
+    `${field.colId}` ${field.colDataTypeWithLength} ${field.colNotNull}	${field.colDefaultValue},
 #else
     `${field.colId}` ${field.colDataTypeWithLength} ${field.colNotNull}	${field.colDefaultValue},
 #end
 #end
-    `${var_CREATE_AUTHOR}` VARCHAR(32) BINARY,
+    `${var_CREATE_AUTHOR}` VARCHAR(32),
     `${var_CREATE_DATETIME}` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `${var_UPDATE_AUTHOR}` VARCHAR(32) BINARY,
+    `${var_UPDATE_AUTHOR}` VARCHAR(32),
     `${var_UPDATE_DATETIME}` TIMESTAMP  DEFAULT CURRENT_TIMESTAMP
 );
 #if ($var_hasAutoIncrement != '1')
