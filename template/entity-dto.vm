@@ -51,7 +51,6 @@ public class $dto.classId extends TableEntity implements Serializable {
    /**
     * Create Author (default setting while insert)
     */
-    @Size(min=32, max=32)
     @ColumnDesc(index=($dto.fieldList.size() + 1), type="VARCHAR", label="Create Auther")
     @Column(name="CREATE_AUTHER", nullable=true, length=32)
     private String ${var_createAuthor};
@@ -64,7 +63,6 @@ public class $dto.classId extends TableEntity implements Serializable {
    /**
     * Update Author (refresh on each update)
     */
-    @Size(min=32, max=32)
     @ColumnDesc(index=($dto.fieldList.size() + 3), type="VARCHAR", label="Update Auther")
     @Column(name="UPDATE_AUTHER", nullable=true, length=32)
     private String ${var_updateAuthor};
