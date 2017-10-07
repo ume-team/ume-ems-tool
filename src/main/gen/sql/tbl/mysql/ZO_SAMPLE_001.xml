@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.umeframework.ems.entity">
+  <!-- EM数据类型测试表2.0 [ZO_SAMPLE_001] -->
+  
+  <!-- Insert one -->
+  <insert id="ZO_SAMPLE_001_INSERT" parameterType="org.umeframework.ems.entity.ZoSample001Dto">
+    INSERT INTO ZO_SAMPLE_001 (
+      TEST_COL_F01,
+      TEST_COL_F02,
+      TEST_COL_F03,
+      TEST_COL_F04,
+      TEST_COL_F05,
+      TEST_COL_F06,
+      TEST_COL_F07,
+      TEST_COL_F08,
+      TEST_COL_F09,
+      TEST_COL_F10,
+      TEST_COL_F11,
+      TEST_COL_F12,
+      TEST_COL_F13,
+      TEST_COL_F14,
+      TEST_COL_F15,
+      TEST_COL_F16,
+      TEST_COL_F17,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      UPDATE_AUTHOR,
+      UPDATE_DATETIME
+    ) VALUES (
+      #{testColF01},
+      #{testColF02},
+      #{testColF03},
+      #{testColF04},
+      #{testColF05},
+      #{testColF06},
+      #{testColF07},
+      #{testColF08},
+      #{testColF09},
+      #{testColF10},
+      #{testColF11},
+      #{testColF12},
+      #{testColF13},
+      #{testColF14},
+      #{testColF15},
+      #{testColF16},
+      #{testColF17},
+      #{createAuthor},
+      current_timestamp(),
+      #{updateAuthor},
+      current_timestamp()
+    )
+  </insert>
+
+  <!-- Update with optimism check) -->
+  <update id="ZO_SAMPLE_001_UPDATE" parameterType="org.umeframework.ems.entity.ZoSample001Dto">
+    UPDATE ZO_SAMPLE_001
+    SET
+      TEST_COL_F03 = #{testColF03},
+      TEST_COL_F04 = #{testColF04},
+      TEST_COL_F05 = #{testColF05},
+      TEST_COL_F06 = #{testColF06},
+      TEST_COL_F07 = #{testColF07},
+      TEST_COL_F08 = #{testColF08},
+      TEST_COL_F09 = #{testColF09},
+      TEST_COL_F10 = #{testColF10},
+      TEST_COL_F11 = #{testColF11},
+      TEST_COL_F12 = #{testColF12},
+      TEST_COL_F13 = #{testColF13},
+      TEST_COL_F14 = #{testColF14},
+      TEST_COL_F15 = #{testColF15},
+      TEST_COL_F16 = #{testColF16},
+      TEST_COL_F17 = #{testColF17},
+      CREATE_AUTHOR = #{createAuthor},
+      CREATE_DATETIME = #{createDatetime},
+      UPDATE_AUTHOR = #{updateAuthor},
+      UPDATE_DATETIME = current_timestamp() 
+    WHERE UPDATE_DATETIME = #{updateDatetime}
+      AND TEST_COL_F01 = #{testColF01}
+      AND TEST_COL_F02 = #{testColF02}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+
+  <!-- Smart update -->
+  <update id="ZO_SAMPLE_001_SMART_UPDATE" parameterType="org.umeframework.ems.entity.ZoSample001Dto">
+    UPDATE ZO_SAMPLE_001
+    <set>
+      <if test="testColF03!=null">TEST_COL_F03 = #{testColF03},</if>
+      <if test="testColF04!=null">TEST_COL_F04 = #{testColF04},</if>
+      <if test="testColF05!=null">TEST_COL_F05 = #{testColF05},</if>
+      <if test="testColF06!=null">TEST_COL_F06 = #{testColF06},</if>
+      <if test="testColF07!=null">TEST_COL_F07 = #{testColF07},</if>
+      <if test="testColF08!=null">TEST_COL_F08 = #{testColF08},</if>
+      <if test="testColF09!=null">TEST_COL_F09 = #{testColF09},</if>
+      <if test="testColF10!=null">TEST_COL_F10 = #{testColF10},</if>
+      <if test="testColF11!=null">TEST_COL_F11 = #{testColF11},</if>
+      <if test="testColF12!=null">TEST_COL_F12 = #{testColF12},</if>
+      <if test="testColF13!=null">TEST_COL_F13 = #{testColF13},</if>
+      <if test="testColF14!=null">TEST_COL_F14 = #{testColF14},</if>
+      <if test="testColF15!=null">TEST_COL_F15 = #{testColF15},</if>
+      <if test="testColF16!=null">TEST_COL_F16 = #{testColF16},</if>
+      <if test="testColF17!=null">TEST_COL_F17 = #{testColF17},</if>
+      <if test="createAuthor!=null">CREATE_AUTHOR = #{createAuthor},</if>
+      <if test="createDatetime!=null">CREATE_DATETIME = #{createDatetime},</if>
+      <if test="updateAuthor!=null">UPDATE_AUTHOR = #{updateAuthor},</if>
+      UPDATE_DATETIME = current_timestamp()
+    </set>
+    WHERE 
+       TEST_COL_F01 = #{testColF01}
+       AND  TEST_COL_F02 = #{testColF02}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+  
+  <!-- Delete one -->
+  <delete id="ZO_SAMPLE_001_DELETE" parameterType="org.umeframework.ems.entity.ZoSample001Dto">
+    DELETE FROM ZO_SAMPLE_001
+    WHERE
+      TEST_COL_F01 = #{testColF01} AND 
+      TEST_COL_F02 = #{testColF02} 
+  </delete>
+
+  <!-- Find by primary key -->
+  <select id="ZO_SAMPLE_001_FIND" resultType="org.umeframework.ems.entity.ZoSample001Dto">
+    SELECT
+      TEST_COL_F01 AS "testColF01",
+      TEST_COL_F02 AS "testColF02",
+      TEST_COL_F03 AS "testColF03",
+      TEST_COL_F04 AS "testColF04",
+      TEST_COL_F05 AS "testColF05",
+      TEST_COL_F06 AS "testColF06",
+      TEST_COL_F07 AS "testColF07",
+      TEST_COL_F08 AS "testColF08",
+      TEST_COL_F09 AS "testColF09",
+      TEST_COL_F10 AS "testColF10",
+      TEST_COL_F11 AS "testColF11",
+      TEST_COL_F12 AS "testColF12",
+      TEST_COL_F13 AS "testColF13",
+      TEST_COL_F14 AS "testColF14",
+      TEST_COL_F15 AS "testColF15",
+      TEST_COL_F16 AS "testColF16",
+      TEST_COL_F17 AS "testColF17",
+      TEST_COL_F18 AS "testColF18",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM ZO_SAMPLE_001
+    WHERE
+      TEST_COL_F01 = #{testColF01} AND 
+      TEST_COL_F02 = #{testColF02} 
+  </select>
+
+  <!-- Find by primary key for update with row lock -->
+  <select id="ZO_SAMPLE_001_FIND_FOR_UPDATE" resultType="org.umeframework.ems.entity.ZoSample001Dto">
+    SELECT
+      TEST_COL_F01 AS "testColF01",
+      TEST_COL_F02 AS "testColF02",
+      TEST_COL_F03 AS "testColF03",
+      TEST_COL_F04 AS "testColF04",
+      TEST_COL_F05 AS "testColF05",
+      TEST_COL_F06 AS "testColF06",
+      TEST_COL_F07 AS "testColF07",
+      TEST_COL_F08 AS "testColF08",
+      TEST_COL_F09 AS "testColF09",
+      TEST_COL_F10 AS "testColF10",
+      TEST_COL_F11 AS "testColF11",
+      TEST_COL_F12 AS "testColF12",
+      TEST_COL_F13 AS "testColF13",
+      TEST_COL_F14 AS "testColF14",
+      TEST_COL_F15 AS "testColF15",
+      TEST_COL_F16 AS "testColF16",
+      TEST_COL_F17 AS "testColF17",
+      TEST_COL_F18 AS "testColF18",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM ZO_SAMPLE_001
+    WHERE
+      TEST_COL_F01 = #{testColF01} AND 
+      TEST_COL_F02 = #{testColF02} 
+    FOR UPDATE
+  </select>
+
+  <!-- Search -->
+  <select id="ZO_SAMPLE_001_SEARCH" resultType="org.umeframework.ems.entity.ZoSample001Dto">
+    SELECT
+      TEST_COL_F01 AS "testColF01",
+      TEST_COL_F02 AS "testColF02",
+      TEST_COL_F03 AS "testColF03",
+      TEST_COL_F04 AS "testColF04",
+      TEST_COL_F05 AS "testColF05",
+      TEST_COL_F06 AS "testColF06",
+      TEST_COL_F07 AS "testColF07",
+      TEST_COL_F08 AS "testColF08",
+      TEST_COL_F09 AS "testColF09",
+      TEST_COL_F10 AS "testColF10",
+      TEST_COL_F11 AS "testColF11",
+      TEST_COL_F12 AS "testColF12",
+      TEST_COL_F13 AS "testColF13",
+      TEST_COL_F14 AS "testColF14",
+      TEST_COL_F15 AS "testColF15",
+      TEST_COL_F16 AS "testColF16",
+      TEST_COL_F17 AS "testColF17",
+      TEST_COL_F18 AS "testColF18",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM ZO_SAMPLE_001
+    WHERE 1 = 1 
+      <if test="testColF01 != null">AND TEST_COL_F01 = #{testColF01}</if>
+      <if test="testColF02 != null">AND TEST_COL_F02 = #{testColF02}</if>
+      <if test="testColF03 != null">AND TEST_COL_F03 = #{testColF03}</if>
+      <if test="testColF04 != null">AND TEST_COL_F04 = #{testColF04}</if>
+      <if test="testColF05 != null">AND TEST_COL_F05 = #{testColF05}</if>
+      <if test="testColF06 != null">AND TEST_COL_F06 = #{testColF06}</if>
+      <if test="testColF07 != null">AND TEST_COL_F07 = #{testColF07}</if>
+      <if test="testColF08 != null">AND TEST_COL_F08 = #{testColF08}</if>
+      <if test="testColF09 != null">AND TEST_COL_F09 = #{testColF09}</if>
+      <if test="testColF10 != null">AND TEST_COL_F10 = #{testColF10}</if>
+      <if test="testColF11 != null">AND TEST_COL_F11 = #{testColF11}</if>
+      <if test="testColF12 != null">AND TEST_COL_F12 = #{testColF12}</if>
+      <if test="testColF13 != null">AND TEST_COL_F13 = #{testColF13}</if>
+      <if test="testColF14 != null">AND TEST_COL_F14 = #{testColF14}</if>
+      <if test="testColF15 != null">AND TEST_COL_F15 = #{testColF15}</if>
+      <if test="testColF16 != null">AND TEST_COL_F16 = #{testColF16}</if>
+      <if test="testColF17 != null">AND TEST_COL_F17 = #{testColF17}</if>
+      <if test="testColF18 != null">AND TEST_COL_F18 = #{testColF18}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+
+  <!-- Like Search -->
+  <select id="ZO_SAMPLE_001_LIKE_SEARCH" resultType="org.umeframework.ems.entity.ZoSample001Dto">
+    SELECT
+      TEST_COL_F01 AS "testColF01",
+      TEST_COL_F02 AS "testColF02",
+      TEST_COL_F03 AS "testColF03",
+      TEST_COL_F04 AS "testColF04",
+      TEST_COL_F05 AS "testColF05",
+      TEST_COL_F06 AS "testColF06",
+      TEST_COL_F07 AS "testColF07",
+      TEST_COL_F08 AS "testColF08",
+      TEST_COL_F09 AS "testColF09",
+      TEST_COL_F10 AS "testColF10",
+      TEST_COL_F11 AS "testColF11",
+      TEST_COL_F12 AS "testColF12",
+      TEST_COL_F13 AS "testColF13",
+      TEST_COL_F14 AS "testColF14",
+      TEST_COL_F15 AS "testColF15",
+      TEST_COL_F16 AS "testColF16",
+      TEST_COL_F17 AS "testColF17",
+      TEST_COL_F18 AS "testColF18",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM ZO_SAMPLE_001
+    WHERE 1 = 1 
+      <if test="testColF01 != null">AND TEST_COL_F01 LIKE CONCAT('%', #{testColF01}, '%')</if>
+      <if test="testColF02 != null">AND TEST_COL_F02 LIKE CONCAT('%', #{testColF02}, '%')</if>
+      <if test="testColF03 != null">AND TEST_COL_F03 LIKE CONCAT('%', #{testColF03}, '%')</if>
+      <if test="testColF04 != null">AND TEST_COL_F04 LIKE CONCAT('%', #{testColF04}, '%')</if>
+      <if test="testColF05 != null">AND TEST_COL_F05 LIKE CONCAT('%', #{testColF05}, '%')</if>
+      <if test="testColF06 != null">AND TEST_COL_F06 LIKE CONCAT('%', #{testColF06}, '%')</if>
+      <if test="testColF07 != null">AND TEST_COL_F07 LIKE CONCAT('%', #{testColF07}, '%')</if>
+      <if test="testColF08 != null">AND TEST_COL_F08 LIKE CONCAT('%', #{testColF08}, '%')</if>
+      <if test="testColF09 != null">AND TEST_COL_F09 LIKE CONCAT('%', #{testColF09}, '%')</if>
+      <if test="testColF10 != null">AND TEST_COL_F10 LIKE CONCAT('%', #{testColF10}, '%')</if>
+      <if test="testColF11 != null">AND TEST_COL_F11 LIKE CONCAT('%', #{testColF11}, '%')</if>
+      <if test="testColF12 != null">AND TEST_COL_F12 LIKE CONCAT('%', #{testColF12}, '%')</if>
+      <if test="testColF13 != null">AND TEST_COL_F13 LIKE CONCAT('%', #{testColF13}, '%')</if>
+      <if test="testColF14 != null">AND TEST_COL_F14 LIKE CONCAT('%', #{testColF14}, '%')</if>
+      <if test="testColF15 != null">AND TEST_COL_F15 LIKE CONCAT('%', #{testColF15}, '%')</if>
+      <if test="testColF16 != null">AND TEST_COL_F16 LIKE CONCAT('%', #{testColF16}, '%')</if>
+      <if test="testColF17 != null">AND TEST_COL_F17 LIKE CONCAT('%', #{testColF17}, '%')</if>
+      <if test="testColF18 != null">AND TEST_COL_F18 LIKE CONCAT('%', #{testColF18}, '%')</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR LIKE CONCAT('%', #{createAuthor}, '%')</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR LIKE CONCAT('%', #{updateAuthor}, '%')</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>    
+  </select>
+  
+  <!-- Dynamic Search -->
+  <select id="ZO_SAMPLE_001_DYNA_SEARCH" resultType="org.umeframework.ems.entity.ZoSample001Dto">
+    SELECT
+      TEST_COL_F01 AS "testColF01",
+      TEST_COL_F02 AS "testColF02",
+      TEST_COL_F03 AS "testColF03",
+      TEST_COL_F04 AS "testColF04",
+      TEST_COL_F05 AS "testColF05",
+      TEST_COL_F06 AS "testColF06",
+      TEST_COL_F07 AS "testColF07",
+      TEST_COL_F08 AS "testColF08",
+      TEST_COL_F09 AS "testColF09",
+      TEST_COL_F10 AS "testColF10",
+      TEST_COL_F11 AS "testColF11",
+      TEST_COL_F12 AS "testColF12",
+      TEST_COL_F13 AS "testColF13",
+      TEST_COL_F14 AS "testColF14",
+      TEST_COL_F15 AS "testColF15",
+      TEST_COL_F16 AS "testColF16",
+      TEST_COL_F17 AS "testColF17",
+      TEST_COL_F18 AS "testColF18",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM ZO_SAMPLE_001
+    WHERE 1 = 1 
+      <if test="testColF01 != null">AND ( ${testColF01} )</if>
+      <if test="testColF02 != null">AND ( ${testColF02} )</if>
+      <if test="testColF03 != null">AND ( ${testColF03} )</if>
+      <if test="testColF04 != null">AND ( ${testColF04} )</if>
+      <if test="testColF05 != null">AND ( ${testColF05} )</if>
+      <if test="testColF06 != null">AND ( ${testColF06} )</if>
+      <if test="testColF07 != null">AND ( ${testColF07} )</if>
+      <if test="testColF08 != null">AND ( ${testColF08} )</if>
+      <if test="testColF09 != null">AND ( ${testColF09} )</if>
+      <if test="testColF10 != null">AND ( ${testColF10} )</if>
+      <if test="testColF11 != null">AND ( ${testColF11} )</if>
+      <if test="testColF12 != null">AND ( ${testColF12} )</if>
+      <if test="testColF13 != null">AND ( ${testColF13} )</if>
+      <if test="testColF14 != null">AND ( ${testColF14} )</if>
+      <if test="testColF15 != null">AND ( ${testColF15} )</if>
+      <if test="testColF16 != null">AND ( ${testColF16} )</if>
+      <if test="testColF17 != null">AND ( ${testColF17} )</if>
+      <if test="testColF18 != null">AND ( ${testColF18} )</if>
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+      <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+      <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+  
+  <!-- Count by input condition -->
+  <select id="ZO_SAMPLE_001_COUNT" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM ZO_SAMPLE_001
+    WHERE 1 = 1 
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="testColF01 != null">AND TEST_COL_F01 = #{testColF01}</if>
+      <if test="testColF02 != null">AND TEST_COL_F02 = #{testColF02}</if>
+      <if test="testColF03 != null">AND TEST_COL_F03 = #{testColF03}</if>
+      <if test="testColF04 != null">AND TEST_COL_F04 = #{testColF04}</if>
+      <if test="testColF05 != null">AND TEST_COL_F05 = #{testColF05}</if>
+      <if test="testColF06 != null">AND TEST_COL_F06 = #{testColF06}</if>
+      <if test="testColF07 != null">AND TEST_COL_F07 = #{testColF07}</if>
+      <if test="testColF08 != null">AND TEST_COL_F08 = #{testColF08}</if>
+      <if test="testColF09 != null">AND TEST_COL_F09 = #{testColF09}</if>
+      <if test="testColF10 != null">AND TEST_COL_F10 = #{testColF10}</if>
+      <if test="testColF11 != null">AND TEST_COL_F11 = #{testColF11}</if>
+      <if test="testColF12 != null">AND TEST_COL_F12 = #{testColF12}</if>
+      <if test="testColF13 != null">AND TEST_COL_F13 = #{testColF13}</if>
+      <if test="testColF14 != null">AND TEST_COL_F14 = #{testColF14}</if>
+      <if test="testColF15 != null">AND TEST_COL_F15 = #{testColF15}</if>
+      <if test="testColF16 != null">AND TEST_COL_F16 = #{testColF16}</if>
+      <if test="testColF17 != null">AND TEST_COL_F17 = #{testColF17}</if>
+      <if test="testColF18 != null">AND TEST_COL_F18 = #{testColF18}</if>
+  </select>
+
+</mapper>
+
