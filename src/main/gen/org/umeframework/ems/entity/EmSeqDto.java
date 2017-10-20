@@ -42,36 +42,36 @@ public class EmSeqDto extends TableEntity implements Serializable {
     */
     @NotEmpty
     @Size(max=16)
-    @ColumnDesc(index=2, type="BIGINT", label="最小值")
+    @ColumnDesc(index=2, type="INT", label="最小值")
     @Column(name="MIN_VALUE", nullable=false, length=16)
-    private java.math.BigInteger minValue;
+    private Integer minValue;
 
    /**
     * 最大值 
     */
     @NotEmpty
     @Size(max=32)
-    @ColumnDesc(index=3, type="BIGINT", label="最大值")
+    @ColumnDesc(index=3, type="INT", label="最大值")
     @Column(name="MAX_VALUE", nullable=false, length=32)
-    private java.math.BigInteger maxValue;
+    private Integer maxValue;
 
    /**
     * 当前值 
     */
     @NotEmpty
     @Size(max=32)
-    @ColumnDesc(index=4, type="BIGINT", label="当前值")
+    @ColumnDesc(index=4, type="INT", label="当前值")
     @Column(name="CURRENT_INDEX", nullable=false, length=32)
-    private java.math.BigInteger currentIndex;
+    private Integer currentIndex;
 
    /**
     * 增量 
     */
     @NotEmpty
     @Size(max=16)
-    @ColumnDesc(index=5, type="BIGINT", label="增量")
+    @ColumnDesc(index=5, type="INT", label="增量")
     @Column(name="INCREMENT_VALUE", nullable=false, length=16)
-    private java.math.BigInteger incrementValue;
+    private Integer incrementValue;
 
    /**
     * 长度 
@@ -115,25 +115,25 @@ public class EmSeqDto extends TableEntity implements Serializable {
    /**
     * Create Author (default setting while insert)
     */
-    @ColumnDesc(index=(10 + 1), type="VARCHAR", label="Create Auther")
-    @Column(name="CREATE_AUTHER", nullable=true, length=32)
+    @ColumnDesc(index=(10 + 1), type="VARCHAR", label="createAuthor")
+    @Column(name="CREATE_AUTHOR", nullable=true, length=32)
     private String createAuthor;
    /**
     * Create Datetime (default setting while insert)
     */
-    @ColumnDesc(index=(10 + 2), type="TIMESTAMP", label="Create Datetime")
+    @ColumnDesc(index=(10 + 2), type="TIMESTAMP", label="createDatetime")
     @Column(name="CREATE_DATETIME", nullable=true)
     private java.sql.Timestamp createDatetime;
    /**
     * Update Author (refresh on each update)
     */
-    @ColumnDesc(index=(10 + 3), type="VARCHAR", label="Update Auther")
-    @Column(name="UPDATE_AUTHER", nullable=true, length=32)
+    @ColumnDesc(index=(10 + 3), type="VARCHAR", label="updateAuthor")
+    @Column(name="UPDATE_AUTHOR", nullable=true, length=32)
     private String updateAuthor;
    /**
     * Update Datetime (refresh on each update)
     */
-    @ColumnDesc(index=(10 + 4), type="TIMESTAMP", label="Update Datetime")
+    @ColumnDesc(index=(10 + 4), type="TIMESTAMP", label="updateDatetime")
     @Column(name="UPDATE_DATETIME", nullable=true)
     private java.sql.Timestamp updateDatetime;
 
@@ -154,56 +154,56 @@ public class EmSeqDto extends TableEntity implements Serializable {
     /**
      *　Get the "最小值"
      */
-    public java.math.BigInteger getMinValue() {
+    public Integer getMinValue() {
         return this.minValue;
     }
     /**
      *　Set the "最小值"
      */
     public void setMinValue(
-            java.math.BigInteger minValue) {
+            Integer minValue) {
         this.minValue = minValue;
     }
 
     /**
      *　Get the "最大值"
      */
-    public java.math.BigInteger getMaxValue() {
+    public Integer getMaxValue() {
         return this.maxValue;
     }
     /**
      *　Set the "最大值"
      */
     public void setMaxValue(
-            java.math.BigInteger maxValue) {
+            Integer maxValue) {
         this.maxValue = maxValue;
     }
 
     /**
      *　Get the "当前值"
      */
-    public java.math.BigInteger getCurrentIndex() {
+    public Integer getCurrentIndex() {
         return this.currentIndex;
     }
     /**
      *　Set the "当前值"
      */
     public void setCurrentIndex(
-            java.math.BigInteger currentIndex) {
+            Integer currentIndex) {
         this.currentIndex = currentIndex;
     }
 
     /**
      *　Get the "增量"
      */
-    public java.math.BigInteger getIncrementValue() {
+    public Integer getIncrementValue() {
         return this.incrementValue;
     }
     /**
      *　Set the "增量"
      */
     public void setIncrementValue(
-            java.math.BigInteger incrementValue) {
+            Integer incrementValue) {
         this.incrementValue = incrementValue;
     }
 

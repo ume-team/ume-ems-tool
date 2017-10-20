@@ -187,25 +187,25 @@ public class ZoSample001Dto extends TableEntity implements Serializable {
    /**
     * Create Author (default setting while insert)
     */
-    @ColumnDesc(index=(18 + 1), type="VARCHAR", label="Create Auther")
-    @Column(name="CREATE_AUTHER", nullable=true, length=32)
+    @ColumnDesc(index=(18 + 1), type="VARCHAR", label="createAuthor")
+    @Column(name="CREATE_AUTHOR", nullable=true, length=32)
     private String createAuthor;
    /**
     * Create Datetime (default setting while insert)
     */
-    @ColumnDesc(index=(18 + 2), type="TIMESTAMP", label="Create Datetime")
+    @ColumnDesc(index=(18 + 2), type="TIMESTAMP", label="createDatetime")
     @Column(name="CREATE_DATETIME", nullable=true)
     private java.sql.Timestamp createDatetime;
    /**
     * Update Author (refresh on each update)
     */
-    @ColumnDesc(index=(18 + 3), type="VARCHAR", label="Update Auther")
-    @Column(name="UPDATE_AUTHER", nullable=true, length=32)
+    @ColumnDesc(index=(18 + 3), type="VARCHAR", label="updateAuthor")
+    @Column(name="UPDATE_AUTHOR", nullable=true, length=32)
     private String updateAuthor;
    /**
     * Update Datetime (refresh on each update)
     */
-    @ColumnDesc(index=(18 + 4), type="TIMESTAMP", label="Update Datetime")
+    @ColumnDesc(index=(18 + 4), type="TIMESTAMP", label="updateDatetime")
     @Column(name="UPDATE_DATETIME", nullable=true)
     private java.sql.Timestamp updateDatetime;
 
