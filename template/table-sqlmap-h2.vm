@@ -98,6 +98,24 @@
       ${pkField.colId} = #{${pkField.fieldId}} #if(${velocityHasNext})AND #end
 
 #end
+      <if test="updateDatetime!=null"> AND ${var_UPDATE_DATETIME} = #{${var_updateDatetime}}</if>
+#end
+  </delete>
+#end
+
+  <!-- Delete all matched records -->
+#if(${dto.primaryKeyFieldList.size()} > 0)
+  <delete id="${dto.tblId}_DELETE_ALL" parameterType="$dto.classPackage.${dto.classId}">
+    DELETE FROM ${var_tablePreFix}${dto.tblId}${dto.tblDivision}
+#if(${dto.primaryKeyFieldList.size()} > 0)
+    WHERE 1=1
+#foreach(${field}in${dto.fieldList})
+      <if test="${field.fieldId} != null">AND ${field.colId} = #{${field.fieldId}}</if>
+#end
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{${var_createAuthor}}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{${var_updateAuthor}}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME = #{${var_createDatetime}}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME = #{${var_updateDatetime}}</if>
 #end
   </delete>
 #end
