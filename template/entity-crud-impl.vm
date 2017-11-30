@@ -43,9 +43,18 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
 #if(${dto.tblHistory} != '')
         if (this.enableOperationHistory) {
             // insert modified history
+            if (entity.getCreateAuthor() == null) {
+                entity.setCreateAuthor(super.getUid());
+            }
             super.getDao().update(${dto.classId}.SQLID.INSERT_HISTORY_C, entity);
         }
 #end
+        if (entity.getCreateAuthor() == null) {
+            entity.setCreateAuthor(super.getUid());
+        }
+        if (entity.getUpdateAuthor() == null) {
+            entity.setUpdateAuthor(super.getUid());
+        }
         int result = super.getDao().update(${dto.classId}.SQLID.INSERT, entity);
         return result;
     }
@@ -105,9 +114,15 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
 #if(${dto.tblHistory} != '')
         if (this.enableOperationHistory) {
             // insert modified history
+            if (entity.getCreateAuthor() == null) {
+                entity.setCreateAuthor(super.getUid());
+            }
             super.getDao().update(${dto.classId}.SQLID.INSERT_HISTORY_U, this.find(entity));
         }
 #end
+        if (entity.getUpdateAuthor() == null) {
+            entity.setUpdateAuthor(super.getUid());
+        }
         int result = super.getDao().update(${dto.classId}.SQLID.SMART_UPDATE, entity);
         return result;
     }
@@ -168,6 +183,9 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
 #if(${dto.tblHistory} != '')
         if (this.enableOperationHistory) {
             // insert modified history
+            if (entity.getCreateAuthor() == null) {
+                entity.setCreateAuthor(super.getUid());
+            }
             super.getDao().update(${dto.classId}.SQLID.INSERT_HISTORY_D, this.find(entity));
         }
 #end

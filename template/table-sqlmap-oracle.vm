@@ -1,5 +1,6 @@
 #set($var_OPERATION_HISTORY_DATETIME="OPERATION_HISTORY_DATETIME")
 #set($var_OPERATION_HISTORY_CATEGORY="OPERATION_HISTORY_CATEGORY")
+#set($var_OPERATION_HISTORY_AUTHER="OPERATION_HISTORY_AUTHER")
 #set($var_CREATE_AUTHOR="CREATE_AUTHOR")
 #set($var_CREATE_DATETIME="CREATE_DATETIME")
 #set($var_UPDATE_AUTHOR="UPDATE_AUTHOR")
@@ -234,12 +235,14 @@
 #foreach(${field}in${dto.fieldList})
       ${field.colId},
 #end
-      ${var_OPERATION_HISTORY_DATETIME},
+      ${var_CREATE_AUTHOR},
+      ${var_CREATE_DATETIME},
       ${var_OPERATION_HISTORY_CATEGORY}
     ) VALUES (
 #foreach(${field}in${dto.fieldList})
       #{${field.fieldId}},
 #end
+      #{${var_createAuthor}},
       ${var_currentTimestamp},
       'C'
     )
@@ -249,12 +252,14 @@
 #foreach(${field}in${dto.fieldList})
       ${field.colId},
 #end
-      ${var_OPERATION_HISTORY_DATETIME},
+      ${var_CREATE_AUTHOR},
+      ${var_CREATE_DATETIME},
       ${var_OPERATION_HISTORY_CATEGORY}
     ) VALUES (
 #foreach(${field}in${dto.fieldList})
       #{${field.fieldId}},
 #end
+      #{${var_createAuthor}},
       ${var_currentTimestamp},
       'U'
     )
@@ -264,12 +269,14 @@
 #foreach(${field}in${dto.fieldList})
       ${field.colId},
 #end
-      ${var_OPERATION_HISTORY_DATETIME},
+      ${var_CREATE_AUTHOR},
+      ${var_CREATE_DATETIME},
       ${var_OPERATION_HISTORY_CATEGORY}
     ) VALUES (
 #foreach(${field}in${dto.fieldList})
       #{${field.fieldId}},
 #end
+      #{${var_createAuthor}},
       ${var_currentTimestamp},
       'D'
     )
