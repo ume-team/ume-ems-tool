@@ -166,7 +166,7 @@
   </select>
 
   <!-- Search SQL Declare -->
-  <select id="${dto.tblId}_SEARCH" resultType="$dto.classPackage.${dto.classId}">
+  <select id="${dto.tblId}_FIND_LIST" resultType="$dto.classPackage.${dto.classId}">
     SELECT
 #foreach(${field}in${dto.fieldList})
       ${field.colId} AS "${field.fieldId}",
@@ -188,7 +188,7 @@
   </select>
 
   <!-- Like Search SQL Declare -->
-  <select id="${dto.tblId}_LIKE_SEARCH" resultType="$dto.classPackage.${dto.classId}">
+  <select id="${dto.tblId}_FIND_LIST_LIKE" resultType="$dto.classPackage.${dto.classId}">
     SELECT
 #foreach(${field}in${dto.fieldList})
       ${field.colId} AS "${field.fieldId}",

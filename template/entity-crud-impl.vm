@@ -222,7 +222,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
      */
     @Override
     public List<${dto.classId}> findList(${dto.classId} condition) {
-        return super.getDao().queryForObjectList(${dto.classId}.SQLID.SEARCH, condition, ${dto.classId}.class);
+        return super.getDao().queryForObjectList(${dto.classId}.SQLID.FIND_LIST, condition, ${dto.classId}.class);
     }
     
     /* (non-Javadoc)
@@ -231,7 +231,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
      */
     @Override
     public List<${dto.classId}> findListLike(Map<String, String> condition) {
-        return super.getDao().queryForObjectList(${dto.classId}.SQLID.LIKE_SEARCH, condition, ${dto.classId}.class);
+        return super.getDao().queryForObjectList(${dto.classId}.SQLID.FIND_LIST_LIKE, condition, ${dto.classId}.class);
     }
     
     /* (non-Javadoc)
@@ -240,7 +240,7 @@ public class ${dto.tableCrudServiceClass} extends BaseDBComponent implements ${d
      */
     @Override
     public List<${dto.classId}> findListMatch(Map<String, String> dynaCondition) {
-        return super.getDao().queryForObjectList(${dto.classId}.SQLID.DYNA_SEARCH, dynaCondition, ${dto.classId}.class);
+        return super.getDao().queryForObjectList(${dto.classId}.SQLID.FIND_LIST_MATCH, dynaCondition, ${dto.classId}.class);
     }
     
     /* (non-Javadoc)
