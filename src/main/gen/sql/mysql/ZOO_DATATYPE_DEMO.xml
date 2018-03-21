@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.umeframework.ems.test.entity">
+  <!-- 数据类型测试·DEMO表 [ZOO_DATATYPE_DEMO] -->
+  
+  <!-- Insert one -->
+  <insert id="ZOO_DATATYPE_DEMO_INSERT" parameterType="org.umeframework.ems.test.entity.ZooDatatypeDemoDto">
+    INSERT INTO ZOO_DATATYPE_DEMO (
+      textValuePrimaryKey,
+      textValueVarLength,
+      IntValue,
+      IntValueWithDefault,
+      DateValue,
+      TimeValue,
+      TimestampValue,
+      BigIntValueWithLength,
+      BigIntValue,
+      decimalValue,
+      DecimalValueWithLength,
+      TextFixedValue,
+      LongTextValue,
+      blobObj,
+      clobObj,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      UPDATE_AUTHOR,
+      UPDATE_DATETIME
+    ) VALUES (
+      #{textvalueprimarykey},
+      #{textvaluevarlength},
+      #{intvalue},
+      #{intvaluewithdefault},
+      #{datevalue},
+      #{timevalue},
+      #{timestampvalue},
+      #{bigintvaluewithlength},
+      #{bigintvalue},
+      #{decimalvalue},
+      #{decimalvaluewithlength},
+      #{textfixedvalue},
+      #{longtextvalue},
+      #{blobobj},
+      #{clobobj},
+      #{createAuthor},
+      current_timestamp(),
+      #{updateAuthor},
+      current_timestamp()
+    )
+  </insert>
+  
+  <!-- Update with optimism check) -->
+  <update id="ZOO_DATATYPE_DEMO_UPDATE" parameterType="org.umeframework.ems.test.entity.ZooDatatypeDemoDto">
+    UPDATE ZOO_DATATYPE_DEMO
+    SET
+      IntValue = #{intvalue},
+      IntValueWithDefault = #{intvaluewithdefault},
+      DateValue = #{datevalue},
+      TimeValue = #{timevalue},
+      TimestampValue = #{timestampvalue},
+      BigIntValueWithLength = #{bigintvaluewithlength},
+      BigIntValue = #{bigintvalue},
+      decimalValue = #{decimalvalue},
+      DecimalValueWithLength = #{decimalvaluewithlength},
+      TextFixedValue = #{textfixedvalue},
+      LongTextValue = #{longtextvalue},
+      blobObj = #{blobobj},
+      clobObj = #{clobobj},
+      CREATE_AUTHOR = #{createAuthor},
+      CREATE_DATETIME = #{createDatetime},
+      UPDATE_AUTHOR = #{updateAuthor},
+      UPDATE_DATETIME = current_timestamp() 
+    WHERE UPDATE_DATETIME = #{updateDatetime}
+      AND textValuePrimaryKey = #{textvalueprimarykey}
+      AND textValueVarLength = #{textvaluevarlength}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+
+  <!-- Smart update -->
+  <update id="ZOO_DATATYPE_DEMO_SMART_UPDATE" parameterType="org.umeframework.ems.test.entity.ZooDatatypeDemoDto">
+    UPDATE ZOO_DATATYPE_DEMO
+    <set>
+      <if test="intvalue!=null">IntValue = #{intvalue},</if>
+      <if test="intvaluewithdefault!=null">IntValueWithDefault = #{intvaluewithdefault},</if>
+      <if test="datevalue!=null">DateValue = #{datevalue},</if>
+      <if test="timevalue!=null">TimeValue = #{timevalue},</if>
+      <if test="timestampvalue!=null">TimestampValue = #{timestampvalue},</if>
+      <if test="bigintvaluewithlength!=null">BigIntValueWithLength = #{bigintvaluewithlength},</if>
+      <if test="bigintvalue!=null">BigIntValue = #{bigintvalue},</if>
+      <if test="decimalvalue!=null">decimalValue = #{decimalvalue},</if>
+      <if test="decimalvaluewithlength!=null">DecimalValueWithLength = #{decimalvaluewithlength},</if>
+      <if test="textfixedvalue!=null">TextFixedValue = #{textfixedvalue},</if>
+      <if test="longtextvalue!=null">LongTextValue = #{longtextvalue},</if>
+      <if test="blobobj!=null">blobObj = #{blobobj},</if>
+      <if test="clobobj!=null">clobObj = #{clobobj},</if>
+      <if test="createAuthor!=null">CREATE_AUTHOR = #{createAuthor},</if>
+      <if test="createDatetime!=null">CREATE_DATETIME = #{createDatetime},</if>
+      <if test="updateAuthor!=null">UPDATE_AUTHOR = #{updateAuthor},</if>
+      UPDATE_DATETIME = current_timestamp()
+    </set>
+    WHERE 
+       textValuePrimaryKey = #{textvalueprimarykey}
+       AND  textValueVarLength = #{textvaluevarlength}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+  
+  <!-- Delete one -->
+  <delete id="ZOO_DATATYPE_DEMO_DELETE" parameterType="org.umeframework.ems.test.entity.ZooDatatypeDemoDto">
+    DELETE FROM ZOO_DATATYPE_DEMO
+    WHERE
+      textValuePrimaryKey = #{textvalueprimarykey} AND 
+      textValueVarLength = #{textvaluevarlength} 
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </delete>
+
+  <!-- Delete all matched records -->
+  <delete id="ZOO_DATATYPE_DEMO_DELETE_ALL" parameterType="org.umeframework.ems.test.entity.ZooDatatypeDemoDto">
+    DELETE FROM ZOO_DATATYPE_DEMO
+    WHERE 1=1
+      <if test="textvalueprimarykey != null">AND textValuePrimaryKey = #{textvalueprimarykey}</if>
+      <if test="textvaluevarlength != null">AND textValueVarLength = #{textvaluevarlength}</if>
+      <if test="intvalue != null">AND IntValue = #{intvalue}</if>
+      <if test="intvaluewithdefault != null">AND IntValueWithDefault = #{intvaluewithdefault}</if>
+      <if test="datevalue != null">AND DateValue = #{datevalue}</if>
+      <if test="timevalue != null">AND TimeValue = #{timevalue}</if>
+      <if test="timestampvalue != null">AND TimestampValue = #{timestampvalue}</if>
+      <if test="bigintvaluewithlength != null">AND BigIntValueWithLength = #{bigintvaluewithlength}</if>
+      <if test="bigintvalue != null">AND BigIntValue = #{bigintvalue}</if>
+      <if test="decimalvalue != null">AND decimalValue = #{decimalvalue}</if>
+      <if test="decimalvaluewithlength != null">AND DecimalValueWithLength = #{decimalvaluewithlength}</if>
+      <if test="textfixedvalue != null">AND TextFixedValue = #{textfixedvalue}</if>
+      <if test="longtextvalue != null">AND LongTextValue = #{longtextvalue}</if>
+      <if test="blobobj != null">AND blobObj = #{blobobj}</if>
+      <if test="clobobj != null">AND clobObj = #{clobobj}</if>
+      <if test="autogensequence != null">AND AutoGenSequence = #{autogensequence}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME = #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </delete>
+
+  <!-- Find by primary key -->
+  <select id="ZOO_DATATYPE_DEMO_FIND" resultType="org.umeframework.ems.test.entity.ZooDatatypeDemoDto">
+    SELECT
+      textValuePrimaryKey AS "textvalueprimarykey",
+      textValueVarLength AS "textvaluevarlength",
+      IntValue AS "intvalue",
+      IntValueWithDefault AS "intvaluewithdefault",
+      DateValue AS "datevalue",
+      TimeValue AS "timevalue",
+      TimestampValue AS "timestampvalue",
+      BigIntValueWithLength AS "bigintvaluewithlength",
+      BigIntValue AS "bigintvalue",
+      decimalValue AS "decimalvalue",
+      DecimalValueWithLength AS "decimalvaluewithlength",
+      TextFixedValue AS "textfixedvalue",
+      LongTextValue AS "longtextvalue",
+      blobObj AS "blobobj",
+      clobObj AS "clobobj",
+      AutoGenSequence AS "autogensequence",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM ZOO_DATATYPE_DEMO
+    WHERE
+      textValuePrimaryKey = #{textvalueprimarykey} AND 
+      textValueVarLength = #{textvaluevarlength} 
+  </select>
+
+  <!-- Find by primary key for update with row lock -->
+  <select id="ZOO_DATATYPE_DEMO_FIND_FOR_UPDATE" resultType="org.umeframework.ems.test.entity.ZooDatatypeDemoDto">
+    SELECT
+      textValuePrimaryKey AS "textvalueprimarykey",
+      textValueVarLength AS "textvaluevarlength",
+      IntValue AS "intvalue",
+      IntValueWithDefault AS "intvaluewithdefault",
+      DateValue AS "datevalue",
+      TimeValue AS "timevalue",
+      TimestampValue AS "timestampvalue",
+      BigIntValueWithLength AS "bigintvaluewithlength",
+      BigIntValue AS "bigintvalue",
+      decimalValue AS "decimalvalue",
+      DecimalValueWithLength AS "decimalvaluewithlength",
+      TextFixedValue AS "textfixedvalue",
+      LongTextValue AS "longtextvalue",
+      blobObj AS "blobobj",
+      clobObj AS "clobobj",
+      AutoGenSequence AS "autogensequence",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM ZOO_DATATYPE_DEMO
+    WHERE
+      textValuePrimaryKey = #{textvalueprimarykey} AND 
+      textValueVarLength = #{textvaluevarlength} 
+    FOR UPDATE
+  </select>
+
+  <!-- Search -->
+  <select id="ZOO_DATATYPE_DEMO_FIND_LIST" resultType="org.umeframework.ems.test.entity.ZooDatatypeDemoDto">
+    SELECT
+      textValuePrimaryKey AS "textvalueprimarykey",
+      textValueVarLength AS "textvaluevarlength",
+      IntValue AS "intvalue",
+      IntValueWithDefault AS "intvaluewithdefault",
+      DateValue AS "datevalue",
+      TimeValue AS "timevalue",
+      TimestampValue AS "timestampvalue",
+      BigIntValueWithLength AS "bigintvaluewithlength",
+      BigIntValue AS "bigintvalue",
+      decimalValue AS "decimalvalue",
+      DecimalValueWithLength AS "decimalvaluewithlength",
+      TextFixedValue AS "textfixedvalue",
+      LongTextValue AS "longtextvalue",
+      blobObj AS "blobobj",
+      clobObj AS "clobobj",
+      AutoGenSequence AS "autogensequence",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM ZOO_DATATYPE_DEMO
+    WHERE 1 = 1 
+      <if test="textvalueprimarykey != null">AND textValuePrimaryKey = #{textvalueprimarykey}</if>
+      <if test="textvaluevarlength != null">AND textValueVarLength = #{textvaluevarlength}</if>
+      <if test="intvalue != null">AND IntValue = #{intvalue}</if>
+      <if test="intvaluewithdefault != null">AND IntValueWithDefault = #{intvaluewithdefault}</if>
+      <if test="datevalue != null">AND DateValue = #{datevalue}</if>
+      <if test="timevalue != null">AND TimeValue = #{timevalue}</if>
+      <if test="timestampvalue != null">AND TimestampValue = #{timestampvalue}</if>
+      <if test="bigintvaluewithlength != null">AND BigIntValueWithLength = #{bigintvaluewithlength}</if>
+      <if test="bigintvalue != null">AND BigIntValue = #{bigintvalue}</if>
+      <if test="decimalvalue != null">AND decimalValue = #{decimalvalue}</if>
+      <if test="decimalvaluewithlength != null">AND DecimalValueWithLength = #{decimalvaluewithlength}</if>
+      <if test="textfixedvalue != null">AND TextFixedValue = #{textfixedvalue}</if>
+      <if test="longtextvalue != null">AND LongTextValue = #{longtextvalue}</if>
+      <if test="blobobj != null">AND blobObj = #{blobobj}</if>
+      <if test="clobobj != null">AND clobObj = #{clobobj}</if>
+      <if test="autogensequence != null">AND AutoGenSequence = #{autogensequence}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+
+  <!-- Like Search -->
+  <select id="ZOO_DATATYPE_DEMO_FIND_LIST_LIKE" resultType="org.umeframework.ems.test.entity.ZooDatatypeDemoDto">
+    SELECT
+      textValuePrimaryKey AS "textvalueprimarykey",
+      textValueVarLength AS "textvaluevarlength",
+      IntValue AS "intvalue",
+      IntValueWithDefault AS "intvaluewithdefault",
+      DateValue AS "datevalue",
+      TimeValue AS "timevalue",
+      TimestampValue AS "timestampvalue",
+      BigIntValueWithLength AS "bigintvaluewithlength",
+      BigIntValue AS "bigintvalue",
+      decimalValue AS "decimalvalue",
+      DecimalValueWithLength AS "decimalvaluewithlength",
+      TextFixedValue AS "textfixedvalue",
+      LongTextValue AS "longtextvalue",
+      blobObj AS "blobobj",
+      clobObj AS "clobobj",
+      AutoGenSequence AS "autogensequence",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM ZOO_DATATYPE_DEMO
+    WHERE 1 = 1 
+      <if test="textvalueprimarykey != null">AND textValuePrimaryKey LIKE CONCAT('%', #{textvalueprimarykey}, '%')</if>
+      <if test="textvaluevarlength != null">AND textValueVarLength LIKE CONCAT('%', #{textvaluevarlength}, '%')</if>
+      <if test="intvalue != null">AND IntValue LIKE CONCAT('%', #{intvalue}, '%')</if>
+      <if test="intvaluewithdefault != null">AND IntValueWithDefault LIKE CONCAT('%', #{intvaluewithdefault}, '%')</if>
+      <if test="datevalue != null">AND DateValue LIKE CONCAT('%', #{datevalue}, '%')</if>
+      <if test="timevalue != null">AND TimeValue LIKE CONCAT('%', #{timevalue}, '%')</if>
+      <if test="timestampvalue != null">AND TimestampValue LIKE CONCAT('%', #{timestampvalue}, '%')</if>
+      <if test="bigintvaluewithlength != null">AND BigIntValueWithLength LIKE CONCAT('%', #{bigintvaluewithlength}, '%')</if>
+      <if test="bigintvalue != null">AND BigIntValue LIKE CONCAT('%', #{bigintvalue}, '%')</if>
+      <if test="decimalvalue != null">AND decimalValue LIKE CONCAT('%', #{decimalvalue}, '%')</if>
+      <if test="decimalvaluewithlength != null">AND DecimalValueWithLength LIKE CONCAT('%', #{decimalvaluewithlength}, '%')</if>
+      <if test="textfixedvalue != null">AND TextFixedValue LIKE CONCAT('%', #{textfixedvalue}, '%')</if>
+      <if test="longtextvalue != null">AND LongTextValue LIKE CONCAT('%', #{longtextvalue}, '%')</if>
+      <if test="blobobj != null">AND blobObj LIKE CONCAT('%', #{blobobj}, '%')</if>
+      <if test="clobobj != null">AND clobObj LIKE CONCAT('%', #{clobobj}, '%')</if>
+      <if test="autogensequence != null">AND AutoGenSequence LIKE CONCAT('%', #{autogensequence}, '%')</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR LIKE CONCAT('%', #{createAuthor}, '%')</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR LIKE CONCAT('%', #{updateAuthor}, '%')</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>    
+  </select>
+  
+  <!-- Dynamic Search -->
+  <select id="ZOO_DATATYPE_DEMO_FIND_LIST_MATCH" resultType="org.umeframework.ems.test.entity.ZooDatatypeDemoDto">
+    SELECT
+      textValuePrimaryKey AS "textvalueprimarykey",
+      textValueVarLength AS "textvaluevarlength",
+      IntValue AS "intvalue",
+      IntValueWithDefault AS "intvaluewithdefault",
+      DateValue AS "datevalue",
+      TimeValue AS "timevalue",
+      TimestampValue AS "timestampvalue",
+      BigIntValueWithLength AS "bigintvaluewithlength",
+      BigIntValue AS "bigintvalue",
+      decimalValue AS "decimalvalue",
+      DecimalValueWithLength AS "decimalvaluewithlength",
+      TextFixedValue AS "textfixedvalue",
+      LongTextValue AS "longtextvalue",
+      blobObj AS "blobobj",
+      clobObj AS "clobobj",
+      AutoGenSequence AS "autogensequence",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM ZOO_DATATYPE_DEMO
+    WHERE 1 = 1 
+      <if test="textvalueprimarykey != null">AND ( ${textvalueprimarykey} )</if>
+      <if test="textvaluevarlength != null">AND ( ${textvaluevarlength} )</if>
+      <if test="intvalue != null">AND ( ${intvalue} )</if>
+      <if test="intvaluewithdefault != null">AND ( ${intvaluewithdefault} )</if>
+      <if test="datevalue != null">AND ( ${datevalue} )</if>
+      <if test="timevalue != null">AND ( ${timevalue} )</if>
+      <if test="timestampvalue != null">AND ( ${timestampvalue} )</if>
+      <if test="bigintvaluewithlength != null">AND ( ${bigintvaluewithlength} )</if>
+      <if test="bigintvalue != null">AND ( ${bigintvalue} )</if>
+      <if test="decimalvalue != null">AND ( ${decimalvalue} )</if>
+      <if test="decimalvaluewithlength != null">AND ( ${decimalvaluewithlength} )</if>
+      <if test="textfixedvalue != null">AND ( ${textfixedvalue} )</if>
+      <if test="longtextvalue != null">AND ( ${longtextvalue} )</if>
+      <if test="blobobj != null">AND ( ${blobobj} )</if>
+      <if test="clobobj != null">AND ( ${clobobj} )</if>
+      <if test="autogensequence != null">AND ( ${autogensequence} )</if>
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+      <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+      <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+  
+  <!-- Count by input condition -->
+  <select id="ZOO_DATATYPE_DEMO_COUNT" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM ZOO_DATATYPE_DEMO
+    WHERE 1 = 1 
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="textvalueprimarykey != null">AND textValuePrimaryKey = #{textvalueprimarykey}</if>
+      <if test="textvaluevarlength != null">AND textValueVarLength = #{textvaluevarlength}</if>
+      <if test="intvalue != null">AND IntValue = #{intvalue}</if>
+      <if test="intvaluewithdefault != null">AND IntValueWithDefault = #{intvaluewithdefault}</if>
+      <if test="datevalue != null">AND DateValue = #{datevalue}</if>
+      <if test="timevalue != null">AND TimeValue = #{timevalue}</if>
+      <if test="timestampvalue != null">AND TimestampValue = #{timestampvalue}</if>
+      <if test="bigintvaluewithlength != null">AND BigIntValueWithLength = #{bigintvaluewithlength}</if>
+      <if test="bigintvalue != null">AND BigIntValue = #{bigintvalue}</if>
+      <if test="decimalvalue != null">AND decimalValue = #{decimalvalue}</if>
+      <if test="decimalvaluewithlength != null">AND DecimalValueWithLength = #{decimalvaluewithlength}</if>
+      <if test="textfixedvalue != null">AND TextFixedValue = #{textfixedvalue}</if>
+      <if test="longtextvalue != null">AND LongTextValue = #{longtextvalue}</if>
+      <if test="blobobj != null">AND blobObj = #{blobobj}</if>
+      <if test="clobobj != null">AND clobObj = #{clobobj}</if>
+      <if test="autogensequence != null">AND AutoGenSequence = #{autogensequence}</if>
+  </select>
+
+
+  <insert id="ZOO_DATATYPE_DEMO_HT_INSERT_C" parameterType="org.umeframework.ems.test.entity.ZooDatatypeDemoDto">
+    INSERT INTO ZOO_DATATYPE_DEMO_HT (
+      textValuePrimaryKey,
+      textValueVarLength,
+      IntValue,
+      IntValueWithDefault,
+      DateValue,
+      TimeValue,
+      TimestampValue,
+      BigIntValueWithLength,
+      BigIntValue,
+      decimalValue,
+      DecimalValueWithLength,
+      TextFixedValue,
+      LongTextValue,
+      blobObj,
+      clobObj,
+      AutoGenSequence,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{textvalueprimarykey},
+      #{textvaluevarlength},
+      #{intvalue},
+      #{intvaluewithdefault},
+      #{datevalue},
+      #{timevalue},
+      #{timestampvalue},
+      #{bigintvaluewithlength},
+      #{bigintvalue},
+      #{decimalvalue},
+      #{decimalvaluewithlength},
+      #{textfixedvalue},
+      #{longtextvalue},
+      #{blobobj},
+      #{clobobj},
+      #{autogensequence},
+      #{createAuthor},
+      current_timestamp(),
+      'C'
+    )
+  </insert>
+  <insert id="ZOO_DATATYPE_DEMO_HT_INSERT_U" parameterType="org.umeframework.ems.test.entity.ZooDatatypeDemoDto">
+    INSERT INTO ZOO_DATATYPE_DEMO_HT (
+      textValuePrimaryKey,
+      textValueVarLength,
+      IntValue,
+      IntValueWithDefault,
+      DateValue,
+      TimeValue,
+      TimestampValue,
+      BigIntValueWithLength,
+      BigIntValue,
+      decimalValue,
+      DecimalValueWithLength,
+      TextFixedValue,
+      LongTextValue,
+      blobObj,
+      clobObj,
+      AutoGenSequence,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{textvalueprimarykey},
+      #{textvaluevarlength},
+      #{intvalue},
+      #{intvaluewithdefault},
+      #{datevalue},
+      #{timevalue},
+      #{timestampvalue},
+      #{bigintvaluewithlength},
+      #{bigintvalue},
+      #{decimalvalue},
+      #{decimalvaluewithlength},
+      #{textfixedvalue},
+      #{longtextvalue},
+      #{blobobj},
+      #{clobobj},
+      #{autogensequence},
+      #{createAuthor},
+      current_timestamp(),
+      'U'
+    )
+  </insert>
+  <insert id="ZOO_DATATYPE_DEMO_HT_INSERT_D" parameterType="org.umeframework.ems.test.entity.ZooDatatypeDemoDto">
+    INSERT INTO ZOO_DATATYPE_DEMO_HT (
+      textValuePrimaryKey,
+      textValueVarLength,
+      IntValue,
+      IntValueWithDefault,
+      DateValue,
+      TimeValue,
+      TimestampValue,
+      BigIntValueWithLength,
+      BigIntValue,
+      decimalValue,
+      DecimalValueWithLength,
+      TextFixedValue,
+      LongTextValue,
+      blobObj,
+      clobObj,
+      AutoGenSequence,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{textvalueprimarykey},
+      #{textvaluevarlength},
+      #{intvalue},
+      #{intvaluewithdefault},
+      #{datevalue},
+      #{timevalue},
+      #{timestampvalue},
+      #{bigintvaluewithlength},
+      #{bigintvalue},
+      #{decimalvalue},
+      #{decimalvaluewithlength},
+      #{textfixedvalue},
+      #{longtextvalue},
+      #{blobobj},
+      #{clobobj},
+      #{autogensequence},
+      #{createAuthor},
+      current_timestamp(),
+      'D'
+    )
+  </insert>
+
+</mapper>
+
