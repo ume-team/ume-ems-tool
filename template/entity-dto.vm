@@ -19,7 +19,7 @@ import java.io.Serializable;
 $classImport
 #end
 import org.umeframework.dora.bean.BeanUtil;
-import org.umeframework.dora.service.TableEntity;
+import org.umeframework.dora.service.TableObject;
 
 /**
  * Entity class map to table "$dto.className"
@@ -29,7 +29,7 @@ import org.umeframework.dora.service.TableEntity;
 #foreach ( $classAnnotation in $dto.classAnnotationList )
 $classAnnotation
 #end
-public class $dto.classId extends TableEntity implements Serializable {
+public class $dto.classId extends TableObject implements Serializable {
    /**
     * Default serial version code
     */
