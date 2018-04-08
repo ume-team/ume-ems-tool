@@ -225,9 +225,6 @@
       ${var_UPDATE_DATETIME} AS "${var_updateDatetime}"
     FROM ${var_tablePreFix}${dto.tblId}${dto.tblDivision}
     WHERE 1 = 1 
-#foreach(${field}in${dto.fieldList})
-      <if test="${field.fieldId} != null">AND ( ${${field.fieldId}} )</if>
-#end
       <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
       <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
       <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
