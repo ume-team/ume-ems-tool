@@ -1,0 +1,86 @@
+#set($var_LeftBrackets="(")
+#set($var_CREATE_AUTHOR="CREATE_AUTHOR")
+#set($var_CREATE_DATETIME="CREATE_DATETIME")
+#set($var_UPDATE_AUTHOR="UPDATE_AUTHOR")
+#set($var_UPDATE_DATETIME="UPDATE_DATETIME")
+#set($var_createAuthor="createAuthor")
+#set($var_createDatetime="createDatetime")
+#set($var_updateAuthor="updateAuthor")
+#set($var_updateDatetime="updateDatetime")
+#set($var_CreateAuthorAccessor="CreateAuthor")
+#set($var_CreateDatetimeAccessor="CreateDatetime")
+#set($var_UpdateAuthorAccessor="UpdateAuthor")
+#set($var_UpdateDatetimeAccessor="UpdateDatetime")
+
+package $entity
+
+// Import dependencies
+import (
+    "database/sql"
+)
+
+// "${dto.className}"表数据结构
+type ${dto.classOriId} struct {
+
+#foreach ( ${field} in ${dto.fieldList} )
+    // ${field.fieldName} 
+    ${field.fieldIdCap} #renderGolangType(${field.fieldType}) `##
+column:"${field.colId}", ##
+type:"${field.colDataType}", ##
+comment:"${field.colName}", ##
+key:#if (${field.colPK}=='Y')true#else false#end, ##
+notnull:#if (${field.colNotNull}=='NOT NULL')true#else##
+false#end`
+#end
+}
+
+// "${dto.className}"表数据结构
+type Nullable${dto.classOriId} struct {
+
+#foreach ( ${field} in ${dto.fieldList} )
+    // ${field.fieldName} 
+    ${field.fieldIdCap} #renderGolangSqlType(${field.fieldType}) `##
+column:"${field.colId}", ##
+type:"${field.colDataType}", ##
+comment:"${field.colName}", ##
+key:#if (${field.colPK}=='Y')true#else##
+false#end, ##
+notnull:#if (${field.colNotNull}=='NOT NULL')true#else##
+false#end`
+#end
+}
+
+//+ 返回表名
+func (owner *${dto.classOriId}) TableName() string {
+    return "UME_USER"
+}
+
+//+ 创建原生数据类型的结构体实例
+func (owner *${dto.classOriId}) NewInstance() interface{} {
+    return ${dto.classOriId}{}
+}
+
+//+ 创建可空数据类型的结构体实例 (用于数据库访问的参数处理)
+func (owner *${dto.classOriId}) NewNullableInstance() interface{} {
+    return Nullable${dto.classOriId}{}
+}
+
+#macro(renderGolangSqlType $jtype)
+#if(${jtype}=='String')sql.NullString##
+#elseif(${jtype}=='Long' || ${jtype}=='Integer' || ${jtype}=='Short')sql.NullInt64##
+#elseif(${jtype}=='Boolean')sql.NullBool##
+#elseif(${jtype}=='Double' || ${jtype}=='Float')sql.NullFloat64##
+#else##
+sql.NullString##
+#end##
+#end
+
+#macro(renderGolangType $jtype)
+#if(${jtype}=='String')string##
+#elseif(${jtype}=='Long' || ${jtype}=='Integer' || ${jtype}=='Short')int64##
+#elseif(${jtype}=='Boolean')bool##
+#elseif(${jtype}=='Double' || ${jtype}=='Float')float64##
+#else##
+String##
+#end##
+#end
