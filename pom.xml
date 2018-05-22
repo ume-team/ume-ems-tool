@@ -10,7 +10,6 @@
 
 	<artifactId>ume-ems-tool</artifactId>
 	<packaging>jar</packaging>
-    <version>2.0.0.RELEASE</version>
 	<parent>
         <groupId>org.umeframework</groupId>
         <artifactId>umeframework-tool</artifactId>
